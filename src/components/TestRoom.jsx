@@ -58,6 +58,12 @@ const TestRoom = () => {
 
   return (
     <div>
+      <p>
+        You are in
+        {' '}
+        {chatRoom}
+      </p>
+      <a href="/">Home</a>
       {chat.map((item) => (
         <p key={item.messageTime}>
           {item.firstName}
