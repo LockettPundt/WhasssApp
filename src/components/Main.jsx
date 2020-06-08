@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
-
-const MainPage = () => {
+const Main = () => {
   const [createName, setRoomName] = useState('');
+  const [userName, setUserName] = useState('');
   const history = useHistory();
 
 
@@ -12,6 +13,8 @@ const MainPage = () => {
     // db validate name. push if free.
     // update store of room name.
     // redirect to chatroom.
+    localStorage.setItem('userName', userName);
+    localStorage.setItem('chatRoomName', createName);
     console.log(`/room/${createName}`);
     history.push(`/room/${createName}`);
   };
@@ -19,13 +22,21 @@ const MainPage = () => {
 
   return (
     <div>
-      <a href="room/testroom">test room</a>
+      <a href="room/test">test room</a>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
           value={createName}
           placeholder="Enter a Room Name"
           onChange={(e) => setRoomName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          value={userName}
+          placeholder="Enter a Name"
+          onChange={(e) => setUserName(e.target.value)}
+          required
         />
         <button
           type="submit"
@@ -39,4 +50,4 @@ const MainPage = () => {
 };
 
 
-export default MainPage;
+export default Main;

@@ -3,23 +3,21 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {
   RecoilRoot,
   atom,
-  selector,
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
-import MainPage from './components/MainPage';
-import TestRoom from './components/TestRoom';
+import Main from './components/Main';
+import ChatRoom from './components/ChatRoom';
 import './App.css';
 
 
 const App = () => (
   <RecoilRoot>
     <Router>
-      <Route exact path="/" component={MainPage} />
-      <Route path="/room/:roomname" component={TestRoom} />
+      <Route exact path="/" component={Main} />
+      <Route path="/room/:roomname" component={ChatRoom} />
     </Router>
   </RecoilRoot>
-
 );
 
 export default App;
