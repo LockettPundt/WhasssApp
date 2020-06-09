@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
+import axios from 'axios';
 import API_URL from '../utils/apiConn';
 
 const socket = socketIOClient(API_URL);
@@ -14,13 +15,19 @@ const ChatRoom = () => {
   useEffect(() => {
     setChatRoomName(localStorage.getItem('chatRoomName'));
     setUserName(localStorage.getItem('userName'));
-    console.log('hi');
+    const getChatHistory = async (room) => {
+      // console.log('this is the room: ', room);
+      const response = await axios.get(`${API_URL}api/chathistory/${room}`);
+      // console.log('chat history data: ', response.data);
+      return setChat([...response.data]);
+    };
+    getChatHistory(localStorage.getItem('chatRoomName'));
     const connectToRoom = () => {
       socket.on('connect', () => {
         socket.emit('join',
           {
-            userName,
-            chatRoomName,
+            userName: localStorage.getItem('userName'),
+            chatRoomName: localStorage.getItem('chatRoomName'),
             timeJoined: new Date(),
           });
       });
@@ -30,10 +37,10 @@ const ChatRoom = () => {
 
   useEffect(() => {
     socket.on(`${chatRoomName}newMessage`, (data) => {
-      console.log('incoming message', data); // shows incoming messages for now.
+      // console.log('incoming message', data); // shows incoming messages for now.
       setChat([...chat, data]);
     });
-    return () => socket.off();
+    return () => socket.off(`${chatRoomName}newMessage`);
   });
 
 
@@ -46,7 +53,7 @@ const ChatRoom = () => {
         }, 3000);
       }
     });
-    return () => socket.off();
+    return () => socket.off(`${chatRoomName}typing`);
   });
 
 
@@ -61,13 +68,14 @@ const ChatRoom = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    socket.emit('message',
-      {
-        userName,
-        chatRoomName,
-        message,
-        messageTime: new Date(),
-      });
+    const messageData = {
+      userName,
+      chatRoomName,
+      message,
+      messageTime: new Date(),
+    };
+    socket.emit('message', messageData);
+    axios.post(`${API_URL}api/messages`, messageData);
     setMessage('');
   };
 
