@@ -1,51 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 const Main = () => {
-  const [createName, setRoomName] = useState('');
-  const [userName, setUserName] = useState('');
   const history = useHistory();
 
-
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    // db validate name. push if free.
-    // update store of room name.
-    // redirect to chatroom.
-    localStorage.setItem('userName', userName);
-    localStorage.setItem('chatRoomName', createName);
-    console.log(`/room/${createName}`);
-    history.push(`/room/${createName}`);
+    history.push(`${e.target.value}`);
   };
-
-
   return (
-    <div>
-      <a href="room/test">test room</a>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          value={createName}
-          placeholder="Enter a Room Name"
-          onChange={(e) => setRoomName(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          value={userName}
-          placeholder="Enter a Name"
-          onChange={(e) => setUserName(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          label="Submit"
-        >
-          Create
-        </button>
-      </form>
-    </div>
+    <main>
+      <p>
+        Welcome to WhasssApp.
+      </p>
+      <button
+        type="button"
+        value="createroom"
+        onClick={(e) => handleClick(e)}
+      >
+        Create a Room
+      </button>
+      <button
+        type="button"
+        value="joinroom"
+        onClick={(e) => handleClick(e)}
+      >
+        Join a Room
+      </button>
+    </main>
   );
 };
 
