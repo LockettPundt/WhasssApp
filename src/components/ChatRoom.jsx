@@ -28,7 +28,7 @@ const ChatRoom = () => {
           {
             userName: localStorage.getItem('userName'),
             chatRoomName: localStorage.getItem('chatRoomName'),
-            timeJoined: new Date(),
+            lastAccess: new Date(),
           });
       });
     };
