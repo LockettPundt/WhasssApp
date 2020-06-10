@@ -22,8 +22,6 @@ const CreateRoom = () => {
       lastAccess: new Date(),
     };
 
-    // db validate name. push if free.
-
     const response = await axios.post(`${API_URL}api/create`, { chatRoomInfo });
     // console.log(response);
     if (!response.data.error) {
