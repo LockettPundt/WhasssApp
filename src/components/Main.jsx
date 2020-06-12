@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { Button, Box, Text } from 'grommet';
 
 
 const Main = () => {
@@ -11,25 +12,33 @@ const Main = () => {
     history.push(`${e.target.value}`);
   };
   return (
-    <main>
-      <p>
+    <Box
+      direction="column"
+      align="center"
+      height="100vh"
+      justify="center"
+    >
+      <Text
+        margin="small"
+        size="large"
+      >
         Welcome to WhasssApp.
-      </p>
-      <button
+      </Text>
+      <Button
         type="button"
         value="createroom"
         onClick={(e) => handleClick(e)}
-      >
-        Create a Room
-      </button>
-      <button
+        label="Create Room"
+        margin="small"
+      />
+      <Button
         type="button"
         value="joinroom"
         onClick={(e) => handleClick(e)}
-      >
-        Join a Room
-      </button>
-    </main>
+        label="Join Room"
+        margin="small"
+      />
+    </Box>
   );
 };
 

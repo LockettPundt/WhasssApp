@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import {
+  Button, Text, Box, Form, FormField,
+} from 'grommet';
 import API_URL from '../utils/apiConn';
 
 const CreateRoom = () => {
@@ -41,38 +44,52 @@ const CreateRoom = () => {
 
 
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
+    <Box
+      direction="column"
+      align="center"
+      height="100vh"
+      justify="center"
+    >
+      <Form
+
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <FormField
           type="text"
           value={roomName}
           placeholder={roomNamePlaceholder}
           onChange={(e) => setRoomName(e.target.value)}
           required
         />
-        <input
+        <FormField
           type="password"
           placeholder="Enter a password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <input
+        <FormField
           type="text"
           value={userName}
           placeholder="Enter Your Name"
           onChange={(e) => setUserName(e.target.value)}
           required
         />
-        <button
-          type="submit"
-          label="Submit"
-        >
-          Create
-        </button>
-      </form>
-      <a href="/">Home</a>
-    </div>
+        <Box direction="row" gap="medium">
+          <Button
+            type="submit"
+            label="Create"
+            margin="small"
+          />
+          <Button
+            type="button"
+            label="Cancel"
+            margin="small"
+            onClick={() => history.push('/')}
+          />
+        </Box>
+      </Form>
+    </Box>
   );
 };
 

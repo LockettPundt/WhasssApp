@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import {
+  Box, FormField, Form, Button, Text,
+} from 'grommet';
 import { useHistory } from 'react-router-dom';
 import API_URL from '../utils/apiConn';
 
@@ -46,40 +48,51 @@ const JoinRoom = () => {
 
 
   return (
-    <>
-      <div>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <input
-            type="text"
-            placeholder={roomPlaceholder}
-            value={room}
-            onChange={(e) => setRoom(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder={pwPlaaceholder}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Enter Your Name"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            required
-          />
-          <button
+    <Box
+      direction="column"
+      align="center"
+      height="100vh"
+      justify="center"
+    >
+      <Form
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <FormField
+          type="text"
+          placeholder={roomPlaceholder}
+          value={room}
+          onChange={(e) => setRoom(e.target.value)}
+          required
+        />
+        <FormField
+          type="password"
+          placeholder={pwPlaaceholder}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <FormField
+          type="text"
+          placeholder="Enter Your Name"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          required
+        />
+        <Box direction="row" gap="medium">
+          <Button
+            margin="small"
             type="submit"
-          >
-            Join
-          </button>
-        </form>
-        <a href="/">Home</a>
-      </div>
-
-    </>
+            label="Join Room"
+          />
+          <Button
+            type="button"
+            label="Cancel"
+            margin="small"
+            onClick={() => history.push('/')}
+          />
+        </Box>
+      </Form>
+    </Box>
   );
 };
 
