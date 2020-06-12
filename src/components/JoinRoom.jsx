@@ -55,7 +55,6 @@ const JoinRoom = () => {
       justify="center"
     >
       <Form
-
         onSubmit={(e) => handleSubmit(e)}
       >
         <FormField
