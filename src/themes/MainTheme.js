@@ -26,9 +26,14 @@ const MainTheme = {
       color: '#FFC0CB',
     },
   },
-  textinput: {
+  formField: {
     focus: {
-      outline: 'red',
+      border: {
+        color: '#FFC0CB',
+      },
+    },
+    border: {
+      color: '#FFC0CB',
     },
   },
 };

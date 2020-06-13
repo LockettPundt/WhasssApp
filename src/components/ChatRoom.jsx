@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import {
   Box, Text, Button, TextInput, Form,
 } from 'grommet';
-import { Send } from 'grommet-icons';
+import { Send, Run } from 'grommet-icons';
 import axios from 'axios';
 import API_URL from '../utils/apiConn';
 import Message from './Message';
@@ -115,6 +115,7 @@ const ChatRoom = () => {
       <Box
         responsive
         direction="row"
+        alignContent="center"
         justify="between"
         margin={{
           vertical: 'small',
@@ -130,7 +131,13 @@ const ChatRoom = () => {
           alignSelf="center"
           type="button"
           onClick={logOut}
-          label="Leave"
+          // label="Exit"
+          icon={(
+            <Run
+              color="#FFC0CB"
+              size="2.5rem"
+            />
+          )}
         />
       </Box>
       <Box
