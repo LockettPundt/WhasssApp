@@ -80,6 +80,7 @@ const JoinRoom = () => {
         />
         <Box direction="row" gap="medium">
           <Button
+            primary
             margin="small"
             type="submit"
             label="Join Room"
