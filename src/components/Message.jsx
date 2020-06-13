@@ -5,26 +5,54 @@ import dateFormat from '../utils/dateFormat';
 
 const Message = ({
   author, userName, messageTime, message,
-}) => {
-  const [date, setDate] = useState(messageTime);
+}) => (
 
-  return (
+  <Box
+    flex="grow"
+    direction={author === userName ? 'row-reverse' : 'row'}
+    margin={{
+      vertical: 'small',
+      horizontal: 'small',
+    }}
+  >
     <Box
-      direction={author === userName ? 'row-reverse' : 'row'}
-      margin={{
-        vertical: 'small',
-      }}
+      direction="column"
     >
-      <Text>
-        {author === userName ? '' : `${author}:`}
-        {' '}
-        {message}
-        {' '}
-        {dateFormat(messageTime)}
+      <Text
+        margin={{
+          horizontal: 'small',
+        }}
+        size="xsmall"
+      >
+        {author === userName ? '' : `${author}`}
       </Text>
+      <Box
+        pad="xsmall"
+        background={{
+          color: author === userName ? '#C0FFF4' : '#FFC0CB',
+        }}
+        round="small"
+      >
+        <Text
+          margin={{
+            horizontal: 'small',
+          }}
+        >
+
+          {message}
+        </Text>
+        <Text
+          margin={{
+            horizontal: 'small',
+          }}
+          size="xsmall"
+        >
+          {dateFormat(messageTime)}
+        </Text>
+      </Box>
     </Box>
-  );
-};
+  </Box>
+);
 
 
 export default Message;
