@@ -51,7 +51,6 @@ const CreateRoom = () => {
       justify="center"
     >
       <Form
-
         onSubmit={(e) => handleSubmit(e)}
       >
         <FormField
@@ -77,9 +76,11 @@ const CreateRoom = () => {
         />
         <Box direction="row" gap="medium">
           <Button
+            primary
             type="submit"
             label="Create"
             margin="small"
+            // onSubmit={(e) => handleSubmit(e)}
           />
           <Button
             type="button"
