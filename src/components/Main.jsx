@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import { Button, Box, Text } from 'grommet';
 
 
@@ -20,11 +19,12 @@ const Main = () => {
     >
       <Text
         margin="small"
-        size="large"
+        size="xxlarge"
       >
         Welcome to WhasssApp.
       </Text>
       <Button
+        primary
         type="button"
         value="createroom"
         onClick={(e) => handleClick(e)}
