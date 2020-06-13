@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
+import { useHistory } from 'react-router-dom';
 import {
-  Box, Text, FormField, Button, TextInput,
+  Box, Text, Button, TextInput, Form,
 } from 'grommet';
+import { Send } from 'grommet-icons';
 import axios from 'axios';
 import API_URL from '../utils/apiConn';
 import Message from './Message';
+
 
 const socket = socketIOClient(API_URL);
 
@@ -15,6 +18,7 @@ const ChatRoom = () => {
   const [userName, setUserName] = useState('');
   const [message, setMessage] = useState('');
   const [typingMessage, setTypingMessage] = useState('');
+  const history = useHistory();
 
   function scrollDown() {
     const chatBox = document.getElementById('chatBox');
@@ -58,6 +62,7 @@ const ChatRoom = () => {
   useEffect(() => {
     socket.on(`${chatRoomName}typing`, (data) => {
       if (userName !== data.userName) {
+        // const typeIcon = (<)
         setTypingMessage(`${data.userName} is typing...`);
         setTimeout(() => {
           setTypingMessage('');
@@ -80,6 +85,7 @@ const ChatRoom = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
+    if (!message.length) return false;
     const messageData = {
       userName,
       chatRoomName,
@@ -88,13 +94,14 @@ const ChatRoom = () => {
     };
     socket.emit('message', messageData);
     axios.post(`${API_URL}api/messages`, messageData);
-    setMessage('');
     scrollDown();
+    return setMessage('');
   };
 
   const logOut = () => {
     localStorage.removeItem('chatRoomName');
     localStorage.removeItem('userName');
+    history.push('/');
   };
 
   return (
@@ -103,16 +110,36 @@ const ChatRoom = () => {
         top: 'small',
         horizontal: 'large',
       }}
+      height="95vh"
     >
-      <h3>
-        {chatRoomName}
-      </h3>
-      <a href="/">Home</a>
-      <a type="button" href="/" onClick={logOut}>Leave</a>
       <Box
+        responsive
+        direction="row"
+        justify="between"
+        margin={{
+          vertical: 'small',
+        }}
+      >
+        <Text
+          weight="900"
+          size="xlarge"
+        >
+          {chatRoomName}
+        </Text>
+        <Button
+          alignSelf="center"
+          type="button"
+          onClick={logOut}
+          label="Leave"
+        />
+      </Box>
+      <Box
+        elevation="small"
         id="chatBox"
-        height="60vh"
-        overflow="scroll"
+        height="90%"
+        overflow={{
+          vertical: 'scroll',
+        }}
       >
         {chat.map((item) => (
           <Message
@@ -123,33 +150,43 @@ const ChatRoom = () => {
             messageTime={item.messageTime}
           />
         ))}
-
       </Box>
-
-      <div>
-        {typingMessage}
-      </div>
       <Box
-        margin={{
-          top: 'medium',
-        }}
-        direction="row"
-        align="center"
-        gap="medium"
+        height="10px"
       >
-
-        <TextInput
-          placeholder="message"
-          value={message}
-          onChange={(e) => inputOnChange(e)}
-        />
-        <Button
-          type="button"
-          onClick={(e) => sendMessage(e)}
-          margin="small"
-          label="Send"
-        />
+        <Text
+          size="medium"
+        >
+          {typingMessage}
+        </Text>
       </Box>
+      <Form
+        onSubmit={(e) => sendMessage(e)}
+      >
+        <Box
+          margin={{
+            top: 'medium',
+          }}
+          direction="row"
+          align="center"
+          gap="medium"
+        >
+
+          <TextInput
+            focusIndicator="false"
+            placeholder="message"
+            value={message}
+            onChange={(e) => inputOnChange(e)}
+          />
+          <Button
+            primary
+            type="button"
+            onClick={(e) => sendMessage(e)}
+            margin="small"
+            icon={<Send />}
+          />
+        </Box>
+      </Form>
     </Box>
   );
 };
