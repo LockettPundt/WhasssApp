@@ -1,7 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Box, Text } from 'grommet';
-
+import {
+  Button, Box, Text, Image,
+} from 'grommet';
+import logo from '../IMG/WhasssApp.jpg';
 
 const Main = () => {
   const history = useHistory();
@@ -12,16 +14,36 @@ const Main = () => {
   };
   return (
     <Box
+      elevation="small"
+      background={{
+        color: 'white',
+      }}
+      round="xxsmall"
+      margin="auto"
       direction="column"
       align="center"
-      height="100vh"
       justify="center"
+      pad="large"
+      width="480px"
     >
+      <Box
+        width="small"
+        height="small"
+      >
+        <Image
+          fit="contain"
+          src={logo}
+        />
+
+      </Box>
+
       <Text
         margin="small"
-        size="xxlarge"
+        weight="300"
+        size="medium"
+        textAlign="center"
       >
-        Welcome to WhasssApp.
+        Welcome. This is a simple chat App made with React, Electron and Socket.IO.
       </Text>
       <Button
         primary
