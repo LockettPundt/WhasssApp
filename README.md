@@ -8,7 +8,7 @@ Simple chat app made with react, grommet, socket.io and electron where user can 
 <img src="https://i.postimg.cc/tgC265kT/Screen-Shot-2020-06-15-at-2-44-12-PM.png" height="300px" width="420px">
 <img src="https://i.postimg.cc/XYW2j3y9/Screen-Shot-2020-06-15-at-2-54-51-PM.png" height="300px" width="420px">
 <img src="https://i.postimg.cc/BnCmtyxk/Screen-Shot-2020-06-15-at-2-55-14-PM.png" height="300px" width="420px">
-<img src="https://i.postimg.cc/qMybHggk/Screen-Shot-2020-06-15-at-2-55-28-PM.png" height="300px" width="420px">
+<img src="https://i.postimg.cc/RZdpFFfw/Screen-Shot-2020-06-15-at-3-10-01-PM.png" height="300px" width="420px">
 
 
 ### To Install:
