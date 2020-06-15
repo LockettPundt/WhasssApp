@@ -18,7 +18,6 @@ const JoinRoom = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submitting.');
     const userInfo = {
       password,
       chatRoomName: room,
@@ -26,11 +25,9 @@ const JoinRoom = () => {
     };
 
     const response = await axios.post(`${API_URL}api/join`, { userInfo });
-    console.log(response);
     if (response.data.success) {
       localStorage.setItem('chatRoomName', room);
       localStorage.setItem('userName', userName);
-      console.log('redirecting to:', room);
       history.push(`/room/${room}`);
     }
     if (response.data.error) {
@@ -49,9 +46,15 @@ const JoinRoom = () => {
 
   return (
     <Box
+      background={{
+        color: '#fefefa',
+      }}
       direction="column"
       align="center"
-      height="100vh"
+      margin="auto"
+      pad="medium"
+      round="xxsmall"
+      elevation="small"
       justify="center"
     >
       <Form

@@ -29,9 +29,7 @@ const ChatRoom = () => {
     setChatRoomName(localStorage.getItem('chatRoomName'));
     setUserName(localStorage.getItem('userName'));
     const getChatHistory = async (room) => {
-      // console.log('this is the room: ', room);
       const response = await axios.get(`${API_URL}api/chathistory/${room}`);
-      // console.log('chat history data: ', response.data);
       return setChat([...response.data]);
     };
     getChatHistory(localStorage.getItem('chatRoomName'));
@@ -51,7 +49,6 @@ const ChatRoom = () => {
 
   useEffect(() => {
     socket.on(`${chatRoomName}newMessage`, (data) => {
-      // console.log('incoming message', data); // shows incoming messages for now.
       setChat([...chat, data]);
     });
     scrollDown();
@@ -62,11 +59,12 @@ const ChatRoom = () => {
   useEffect(() => {
     socket.on(`${chatRoomName}typing`, (data) => {
       if (userName !== data.userName) {
-        // const typeIcon = (<)
-        setTypingMessage(`${data.userName} is typing...`);
-        setTimeout(() => {
-          setTypingMessage('');
-        }, 3000);
+        if (!typingMessage.includes(data.userName)) {
+          setTypingMessage(`${data.userName} is typing...`);
+          setTimeout(() => {
+            setTypingMessage('');
+          }, 3000);
+        }
       }
     });
     scrollDown();
@@ -107,10 +105,16 @@ const ChatRoom = () => {
   return (
     <Box
       margin={{
-        top: 'small',
+        top: 'medium',
         horizontal: 'large',
       }}
       height="95vh"
+      background={{
+        color: '#fefefa',
+      }}
+      pad="medium"
+      elevation="small"
+      round="xxsmall"
     >
       <Box
         responsive
@@ -128,10 +132,9 @@ const ChatRoom = () => {
           {chatRoomName}
         </Text>
         <Button
-          alignSelf="center"
+          alignSelf="end"
           type="button"
           onClick={logOut}
-          // label="Exit"
           icon={(
             <Run
               color="#FFC0CB"
