@@ -108,7 +108,7 @@ const ChatRoom = () => {
         top: 'medium',
         horizontal: 'large',
       }}
-      height="95vh"
+      height="90vh"
       background={{
         color: '#fefefa',
       }}
