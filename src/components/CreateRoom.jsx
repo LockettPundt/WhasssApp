@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import axios from 'axios';
 import {
-  Button, Text, Box, Form, FormField,
+  Button, Box, Form, FormField,
 } from 'grommet';
 import API_URL from '../utils/apiConn';
 
@@ -26,11 +25,9 @@ const CreateRoom = () => {
     };
 
     const response = await axios.post(`${API_URL}api/create`, { chatRoomInfo });
-    // console.log(response);
     if (!response.data.error) {
       localStorage.setItem('userName', userName);
       localStorage.setItem('chatRoomName', roomName);
-      console.log(`Connecting to room: ${roomName}`);
       history.push(`/room/${roomName}`);
     }
     if (response.data.error) {
@@ -47,8 +44,14 @@ const CreateRoom = () => {
     <Box
       direction="column"
       align="center"
-      height="100vh"
       justify="center"
+      margin="auto"
+      background={{
+        color: '#fefefa',
+      }}
+      pad="medium"
+      round="xxsmall"
+      elevation="small"
     >
       <Form
         onSubmit={(e) => handleSubmit(e)}
@@ -80,7 +83,6 @@ const CreateRoom = () => {
             type="submit"
             label="Create"
             margin="small"
-            // onSubmit={(e) => handleSubmit(e)}
           />
           <Button
             type="button"
