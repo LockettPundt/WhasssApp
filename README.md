@@ -5,10 +5,10 @@ Simple chat app made with react, grommet, socket.io and electron where user can 
 
 ### Images:
 
-<img src="https://i.postimg.cc/tgC265kT/Screen-Shot-2020-06-15-at-2-44-12-PM.png" height="300px" width="420px">
-<img src="https://i.postimg.cc/XYW2j3y9/Screen-Shot-2020-06-15-at-2-54-51-PM.png" height="300px" width="420px">
-<img src="https://i.postimg.cc/BnCmtyxk/Screen-Shot-2020-06-15-at-2-55-14-PM.png" height="300px" width="420px">
-<img src="https://i.postimg.cc/RZdpFFfw/Screen-Shot-2020-06-15-at-3-10-01-PM.png" height="300px" width="420px">
+<img src="https://i.postimg.cc/Kvnj55LM/Screen-Shot-2020-06-18-at-3-20-29-PM.png" height="300px" width="420px">
+<img src="https://i.postimg.cc/rF6zWHdT/Screen-Shot-2020-06-18-at-3-23-17-PM.png" height="300px" width="420px">
+<img src="https://i.postimg.cc/jScjpdMq/Screen-Shot-2020-06-18-at-3-20-53-PM.png" height="300px" width="420px">
+<img src="https://i.postimg.cc/t4pTvVtm/Screen-Shot-2020-06-18-at-3-22-17-PM.png" height="300px" width="420px">
 
 
 ### To Install:
