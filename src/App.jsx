@@ -6,6 +6,7 @@ import JoinRoom from './components/JoinRoom';
 import CreateRoom from './components/CreateRoom';
 import ChatRoom from './components/ChatRoom';
 import MainTheme from './themes/MainTheme';
+import backgroundImage from './IMG/Zoom-background-1.jpg';
 
 import './App.css';
 
@@ -14,7 +15,7 @@ const App = () => (
   <Grommet theme={MainTheme}>
     <Box
       background={{
-        color: '#D4C0FF',
+        image: `url(${backgroundImage})`,
         opacity: 0.4,
       }}
       height="100vh"
