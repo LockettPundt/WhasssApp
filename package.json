@@ -1,5 +1,5 @@
 {
-  "name": "electron-chat",
+  "name": "WhasssApp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,7 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
-    "electron": "^9.0.0",
+    "electron-is-dev": "^1.2.0",
     "grommet": "^2.13.0",
     "grommet-icons": "^4.4.0",
     "polished": "^3.6.5",
@@ -22,21 +22,18 @@
     "styled-components": "^5.1.1"
   },
   "scripts": {
-    "start": "nf start -p 3000",
-    "build": "rescripts build",
-    "test": "rescripts test --env=jsdom",
-    "eject": "rescripts eject",
-    "electron": "electron .",
-    "electron-start": "node src/start-react",
-    "react-start": "BROWSER=none react-scripts start",
-    "pack": "build --dir",
-    "dist": "npm run build && build",
+    "start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "electron-build": "electron-builder",
+    "electron-pack": "build --em.main=build/electron.js",
     "preelectron-pack": "yarn build",
-    "postinstall": "electron-builder install-app-deps",
-    "electron-pack": "build -mw"
+    "build": "yarn react-build && yarn electron-build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron ."
   },
   "homepage": "./",
-  "main": "src/start.js",
+  "main": "public/electron.js",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -54,6 +51,7 @@
   },
   "devDependencies": {
     "electron-builder": "^22.7.0",
+    "electron": "^9.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
@@ -66,13 +64,10 @@
     "url": "https://LPIV.com"
   },
   "build": {
-    "appId": "com.electron.electron-with-create-react-app",
+    "appId": "com.lpiv.whasssapp",
     "productName": "WhasssAPP",
-    "win": {
-      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
-    },
     "directories": {
-      "buildResources": "public"
+      "buildResources": "src"
     },
     "files": [
       "build/**/*",

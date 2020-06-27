@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import {
   Button, Box, Text, Image,
 } from 'grommet';
-import logo from '../IMG/WhasssApp.jpg';
+import logo from '../WhasssApp.jpg';
 
 const Main = () => {
   const history = useHistory();
