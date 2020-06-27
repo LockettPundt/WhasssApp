@@ -16,14 +16,22 @@ To download the App, go [here](https://www.dropbox.com/s/kpo5yib6171equ1/WhasssA
 ### To Install:
 
 
-Clone this repo and change into the directory
+Clone this repo, change into the directory and install dependencies:
  
 ```
 yarn
 ```
 
+To run locally:
+
 ```
 yarn start
 yarn electron
+```
+
+To Build the App:
+
+```
+yarn build
 ```
 
